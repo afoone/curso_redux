@@ -1,0 +1,13 @@
+.task {
+    border: 1px solid brown;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.task .task-header {
+    font-weight: bold;
+}
+
+.task .task-body {
+    font-size: 0.8em;
+}
