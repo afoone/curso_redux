@@ -1,0 +1,21 @@
+.task-form {
+    margin-bottom: 1rem;
+}
+
+.task-form form{
+    width: 100%;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 20% 70%;
+    gap: 1rem;
+}
+
+.task-form form label {
+    text-align: right;
+}
+
+.task-form form button {
+    grid-column: 2;
+    width: 5em;
+    justify-self: right;
+}
