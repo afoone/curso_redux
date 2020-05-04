@@ -1,23 +1,34 @@
 import React, { useEffect } from 'react';
 import TaskPage from './components/TaskPage'
 import { connect } from 'react-redux'
-import { getTasks } from './actions'
+import { getTasks, setMessage } from './actions'
+import FlashMessage from './components/FlashMessage';
 
 
 function App(props) {
 
 
-  const { dispatch } = props;
+  const { dispatch, tasks, message } = props;
 
   useEffect(() => {
     console.log("effect");
-    dispatch(getTasks())
+    dispatch(getTasks());
   }, [dispatch])
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setMessage(null))
+    }, 3000);
+  }, [message])
+
+
+
 
   return (
     <div className="App">
       <header className="App-header">
-        <TaskPage tasks={props.tasks} />
+        {message ? <FlashMessage message={message}></FlashMessage> : null}
+        <TaskPage tasks={tasks} />
       </header>
     </div>
   );
@@ -25,7 +36,8 @@ function App(props) {
 
 function mapStateToProps(state) {
   return {
-    tasks: state.tasks
+    tasks: state.tasks,
+    message: state.message
   }
 }
 

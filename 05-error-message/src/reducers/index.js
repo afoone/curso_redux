@@ -1,6 +1,6 @@
-import { CREATE_TASK, CHANGE_STATUS, GET_TASK } from '../actions'
+import { CREATE_TASK, CHANGE_STATUS, GET_TASK, SET_MESSAGE } from '../actions'
 
-export const tasks = (state = { tasks: [] }, action) => {
+export const tasks = (state = { tasks: [], message: null }, action) => {
     console.log("REDUCER", state, action);
     switch (action.type) {
         case CREATE_TASK:
@@ -19,8 +19,13 @@ export const tasks = (state = { tasks: [] }, action) => {
             }
         case GET_TASK:
             return {
-                ...state, 
+                ...state,
                 tasks: action.payload
+            }
+        case SET_MESSAGE:
+            return {
+                ...state,
+                message: action.payload
             }
         default:
             return state;

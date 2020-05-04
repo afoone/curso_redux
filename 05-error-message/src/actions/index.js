@@ -5,7 +5,16 @@ import {BASE_API_URL} from '../config'
 export const CREATE_TASK = "create-task";
 export const CHANGE_STATUS ="change-status"
 export const GET_TASK ="get-tasks"
+export const SET_MESSAGE = "set-message"
 
+
+
+export const setMessage = message => {
+    return {
+        type: SET_MESSAGE,
+        payload: message
+    }
+}
 
 const createTaskSucceed = payload => {
     return {
@@ -22,6 +31,8 @@ export const createTask =  (title, description) => {
             status: "Unstarted"
         }).then(
             res => dispatch(createTaskSucceed(res.data))
+        ).catch(
+            err => dispatch(setMessage("Error creando tareas"))
         )
     }
 }
@@ -40,6 +51,8 @@ export const changeStatus = (task, status) => {
             status
         }).then(
             res => dispatch(changeStatusSuceed(res.data))
+        ).catch(
+            err => dispatch(setMessage("Error cambiando el estado de la tarea"))
         )
     }
 }
@@ -57,6 +70,9 @@ export const getTasks = () => {
     return dispatch => {
         axios.get(`${BASE_API_URL}/tasks`).then(
             res => dispatch(getTasksSuceed(res.data))
+        ).catch(
+            () => dispatch(setMessage("Error recuperando las tareas del servidor"))
+            
         )
     }
 }
